@@ -28,7 +28,7 @@ const ClassRoom = () => {
 
   useEffect(() => {
     getClasses();
-  }, []);
+  }, [getClasses]);
 
   let onChangeHandler = (e) => {
     setClassName({ ...className, [e.target.name]: e.target.value });

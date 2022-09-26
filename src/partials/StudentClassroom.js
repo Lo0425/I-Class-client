@@ -28,7 +28,7 @@ const StudentClassroom = () => {
 
   useEffect(() => {
     getClasses();
-  }, []);
+  }, [getClasses]);
 
   let onSubmitHandler = (e) => {
     setIsLoading(true);
