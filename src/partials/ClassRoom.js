@@ -59,7 +59,6 @@ const ClassRoom = () => {
             hideProgressBar: false,
             closeOnClick: true,
           });
-          setIsLoading(false);
 
           if (data.status != 400) {
             setClassName({
@@ -67,9 +66,9 @@ const ClassRoom = () => {
               ownerId: user.data._id,
             });
             navigate("/classroom");
-            setIsLoading(false);
           }
         });
+      setIsLoading(false);
     }
   };
 
