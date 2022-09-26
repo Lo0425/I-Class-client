@@ -59,16 +59,18 @@ const ClassRoom = () => {
             hideProgressBar: false,
             closeOnClick: true,
           });
+          setIsLoading(false);
+          navigate("/classroom");
 
           if (data.status != 400) {
             setClassName({
               class: "",
               ownerId: user.data._id,
             });
+            setIsLoading(false);
             navigate("/classroom");
           }
         });
-      setIsLoading(false);
     }
   };
 
