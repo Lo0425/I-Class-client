@@ -67,12 +67,11 @@ const ClassRoom = () => {
             });
             setIsLoading(false);
             navigate("/classroom");
-          } else {
-            setIsLoading(false);
-            navigate("/classroom");
           }
         });
     }
+    setIsLoading(false);
+    navigate("/classroom");
   };
 
   return (
