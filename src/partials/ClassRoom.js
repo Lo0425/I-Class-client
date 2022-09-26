@@ -17,13 +17,11 @@ const ClassRoom = () => {
   });
 
   const getClasses = async () => {
-    setIsLoading(true);
     let res = await fetch(
       `${process.env.REACT_APP_API_SERVER}/class/` + user.data._id
     );
     let data = await res.json();
     setClassRoom(data.classroom);
-    setIsLoading(false);
   };
 
   useEffect(() => {
