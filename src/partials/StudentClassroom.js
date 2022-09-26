@@ -65,6 +65,9 @@ const StudentClassroom = () => {
             setOtp("");
             navigate("/classroomStudent");
             setIsLoading(false);
+          } else {
+            navigate("/classroomStudent");
+            setIsLoading(false);
           }
         });
     }

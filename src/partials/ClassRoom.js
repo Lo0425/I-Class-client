@@ -70,8 +70,6 @@ const ClassRoom = () => {
           }
         });
     }
-    setIsLoading(false);
-    navigate("/classroom");
   };
 
   return (
