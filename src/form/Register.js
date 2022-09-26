@@ -37,10 +37,6 @@ function Register() {
       label: "Teacher",
       value: "teacher",
     },
-    {
-      label: "Parent",
-      value: "parent",
-    },
   ];
 
   let onSubmitHandler = (e) => {
