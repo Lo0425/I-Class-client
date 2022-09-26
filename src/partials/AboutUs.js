@@ -14,7 +14,7 @@ const AboutUs = () => {
               {login ? (
                 <></>
               ) : (
-                <a href="" class="brand-btn">
+                <a href="/register" class="brand-btn">
                   Register Now
                 </a>
               )}
@@ -119,7 +119,9 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
-        <div id="copyright">&copy; All Rights Reserved by I-Class developer team</div>
+        <div id="copyright">
+          &copy; All Rights Reserved by I-Class developer team
+        </div>
       </footer>
     </>
   );
