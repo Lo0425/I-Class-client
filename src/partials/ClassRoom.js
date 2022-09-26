@@ -59,6 +59,8 @@ const ClassRoom = () => {
             hideProgressBar: false,
             closeOnClick: true,
           });
+          setIsLoading(false);
+
           if (data.status != 400) {
             setClassName({
               class: "",
