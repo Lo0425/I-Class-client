@@ -4,6 +4,7 @@ import logo from "../public/logoIcon.png";
 import { toast } from "react-toastify";
 import { checkAuth } from "../api/users";
 import { useNavigate } from "react-router-dom";
+import podium from "../public/podium.png";
 
 const ClassStudent = () => {
   let navigate = useNavigate();
@@ -77,7 +78,10 @@ const ClassStudent = () => {
               data-bs-target="#offcanvasExample"
               aria-controls="offcanvasExample"
             >
-              Leaderboard
+              <p className="my-auto pr-3">Leaderboard</p>
+              <i className="my-auto">
+                <img src={podium} className="w-6" />
+              </i>
             </button>
             <div
               className="offcanvas offcanvas-start fixed bottom-0 flex flex-col max-w-full bg-white invisible bg-clip-padding shadow-sm outline-none transition duration-300 ease-in-out text-gray-700 top-0 left-0 border-none w-9/12"
@@ -102,7 +106,7 @@ const ClassStudent = () => {
               <div className="offcanvas-body flex-grow p-4 overflow-y-auto">
                 {students.map((student, x) => (
                   <div key={x} className="p-1 flex grid-cols-2 justify-between">
-                    <p className="pr-3 w-2/12">{student.name}</p>
+                    <p className="pr-3 w-6/12">{student.name}</p>
                     <div className="sm:w-7/12 md:w-9/12 lg:w-full w-6/12 bg-gray-200 rounded-full">
                       <div
                         className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-1.5 leading-none rounded-l-full rounded-r-full"
