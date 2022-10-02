@@ -3,7 +3,7 @@ import plus from "../public/plus.png";
 import logo from "../public/logoIcon.png";
 import { toast } from "react-toastify";
 import { checkAuth } from "../api/users";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import edit from "../public/edit.png";
 import plus2 from "../public/plus2.png";
 import Swal from "sweetalert2";
@@ -12,11 +12,12 @@ import emailjs from "@emailjs/browser";
 import podium from "../public/podium.png";
 
 const ClassTeacher = () => {
+  const { state } = useLocation();
+
   let navigate = useNavigate();
   let data = JSON.parse(localStorage.getItem("class"));
   let date = moment().format("MMMM Do YYYY");
   let time = moment().format("h:mm:ss a");
-  let studentData = data.students;
 
   const [isLoading, setIsLoading] = useState(false);
   const [score, setScore] = useState(1);
@@ -25,6 +26,9 @@ const ClassTeacher = () => {
   const [students, setStudents] = useState([]);
   const [sScore, setSScore] = useState();
   const [show, setShow] = useState(true);
+  const [studentData, setStudentData] = useState([]);
+
+  console.log(studentData);
 
   let highestScore = 0;
   if (studentData.length > 0) {
@@ -71,6 +75,7 @@ const ClassTeacher = () => {
       `${process.env.REACT_APP_API_SERVER}/class/getscoresys/` + data.classCode
     );
     let classRoom = await res.json();
+    console.log(classRoom);
     let scoreTable = classRoom.classroom.scoreSys;
 
     scoreTable.sort((a, b) => {
@@ -79,6 +84,7 @@ const ClassTeacher = () => {
 
     setScoreSys(scoreTable);
     setStudents(classRoom.classroom.students);
+    setStudentData(classRoom.classroom.students);
     setIsLoading(false);
   };
 
@@ -277,7 +283,8 @@ const ClassTeacher = () => {
                           width: (student.score / highestScore) * 100 + "%",
                         }}
                       >
-                        <p>{student.score}</p>
+                        <h1>{JSON.stringify(student.score)}</h1>
+                        {/* <p>{student.score}</p> */}
                       </div>
                     </div>
                   </div>
@@ -450,21 +457,21 @@ const ClassTeacher = () => {
                           <label>Name</label>
                           <input
                             className="form-control
-                      block
-                      w-10/12
-                      px-3
-                      py-1.5
-                      text-base
-                      font-normal
-                      text-gray-700
-                      bg-white bg-clip-padding
-                      border border-solid border-gray-300
-                      rounded
-                      transition
-                      ease-in-out
-                      my-2
-                      m-0
-                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        block
+                        w-10/12
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        my-2
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             placeholder="e.g , On Task"
                             value={name}
                             required
@@ -475,20 +482,20 @@ const ClassTeacher = () => {
                           <input
                             type="number"
                             className="form-control
-                      block
-                      w-10/12
-                      px-3
-                      py-1.5
-                      text-base
-                      font-normal
-                      text-gray-700
-                      bg-white bg-clip-padding
-                      border border-solid border-gray-300
-                      rounded
-                      transition
-                      ease-in-out
-                      m-0
-                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none my-2"
+                        block
+                        w-10/12
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none my-2"
                             value={score}
                             onChange={onChangeHandler}
                           />
@@ -582,21 +589,21 @@ const ClassTeacher = () => {
                         <input
                           type="email"
                           className="form-control
-                                      block
-                                      w-9/12
-                                      px-3
-                                      py-1.5
-                                      text-base
-                                      font-normal
-                                      text-gray-700
-                                      bg-white bg-clip-padding
-                                      border border-solid border-gray-300
-                                      rounded
-                                      transition
-                                      ease-in-out
-                                      m-0
-                                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                                    "
+                                        block
+                                        w-9/12
+                                        px-3
+                                        py-1.5
+                                        text-base
+                                        font-normal
+                                        text-gray-700
+                                        bg-white bg-clip-padding
+                                        border border-solid border-gray-300
+                                        rounded
+                                        transition
+                                        ease-in-out
+                                        m-0
+                                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                                      "
                           name="email"
                         />
                         <input

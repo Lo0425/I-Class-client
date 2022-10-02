@@ -95,8 +95,8 @@ const StudentClassroom = () => {
                   type="button"
                   className=" h-48 relative w-full p-5 font-medium text-xs leading-tight uppercase rounded-3xl shadow-lg transition duration-150 ease-in-out"
                   onClick={() => {
-                    navigate("/class-student");
-                    localStorage.setItem("class", JSON.stringify(classR));
+                    navigate("/class-student", { state: { classR } });
+                    /*localStorage.setItem("class", JSON.stringify(classR));*/
                   }}
                 >
                   <p className="absolute left-0 right-0 font-bold">
