@@ -281,8 +281,7 @@ const ClassTeacher = () => {
                           width: (student.score / highestScore) * 100 + "%",
                         }}
                       >
-                        <h1>{JSON.stringify(student.score)}</h1>
-                        {/* <p>{student.score}</p> */}
+                        <p>{student.score}</p>
                       </div>
                     </div>
                   </div>

@@ -3,18 +3,24 @@ import plus from "../public/plus.png";
 import logo from "../public/logoIcon.png";
 import { toast } from "react-toastify";
 import { checkAuth } from "../api/users";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import podium from "../public/podium.png";
 
 const ClassStudent = () => {
+  const { state } = useLocation();
   let navigate = useNavigate();
 
-  let data = JSON.parse(localStorage.getItem("class"));
-  let students = data.students;
+  // let data = JSON.parse(localStorage.getItem("class"));
+  let data = state.classR;
 
+  console.log(data.students);
+
+  let highestScore = 0;
   const [isLoading, setIsLoading] = useState(false);
   const [history, setHistory] = useState([]);
   const [score, setScore] = useState();
+  const [students, setStudents] = useState([]);
+  const [classRoom, setClassRoom] = useState([]);
 
   const onGetScoreHistory = (e) => {
     e.preventDefault();
@@ -34,23 +40,30 @@ const ClassStudent = () => {
       .then((res) => res.json())
       .then((data) => {
         setHistory(data.history.history.reverse());
+        setClassRoom(data.history);
       });
   };
 
-  // students.sort((a, b) => {
-  //   return a - b;
+  const getScoreSys = async () => {
+    setIsLoading(true);
+    let res = await fetch(
+      `${process.env.REACT_APP_API_SERVER}/class/getscoresys/` + data.classCode
+    );
+    let classRoom = await res.json();
+    setStudents(classRoom.classroom.students);
+    setIsLoading(false);
+  };
 
-  // });
-  students.sort((a, b) => {
-    return b.score - a.score;
-  });
-  let highestScore = students[0].score;
+  useEffect(() => {
+    getScoreSys();
+  }, []);
 
-  // for (let i = 0; i < students.length; i++) {
-  //   console.log(students[i]);
-  // }
-
-  useEffect(() => {}, [score]);
+  if (students.length > 0) {
+    students.sort((a, b) => {
+      return b.score - a.score;
+    });
+    highestScore = students[0].score;
+  }
 
   return (
     <>
