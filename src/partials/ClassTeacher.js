@@ -15,7 +15,8 @@ const ClassTeacher = () => {
   const { state } = useLocation();
 
   let navigate = useNavigate();
-  let data = JSON.parse(localStorage.getItem("class"));
+  // let data = JSON.parse(localStorage.getItem("class"));
+  let data = state.classR;
   let date = moment().format("MMMM Do YYYY");
   let time = moment().format("h:mm:ss a");
 
@@ -27,8 +28,6 @@ const ClassTeacher = () => {
   const [sScore, setSScore] = useState();
   const [show, setShow] = useState(true);
   const [studentData, setStudentData] = useState([]);
-
-  console.log(studentData);
 
   let highestScore = 0;
   if (studentData.length > 0) {
@@ -75,7 +74,6 @@ const ClassTeacher = () => {
       `${process.env.REACT_APP_API_SERVER}/class/getscoresys/` + data.classCode
     );
     let classRoom = await res.json();
-    console.log(classRoom);
     let scoreTable = classRoom.classroom.scoreSys;
 
     scoreTable.sort((a, b) => {
